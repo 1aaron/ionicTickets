@@ -5,18 +5,25 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { LoginPage } from '../pages/login/login';
+// import { NuevoTicketPage } from '../pages/nuevo-ticket/nuevo-ticket';
+// import { TicketsDetallePage } from '../pages/tickets-detalle/tickets-detalle'
+import {ShareService} from '../pages/services/ShareService';
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers: [ShareService]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = LoginPage;//HomePage
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
+    private shareService: ShareService) {
+    shareService.setUserId('2');
     this.initializeApp();
 
     // used for an example of ngFor and navigation
